@@ -1,0 +1,2 @@
+chmod +x scripts/start-eviltwin.sh
+chmod +x scripts/stop-eviltwin.sh
