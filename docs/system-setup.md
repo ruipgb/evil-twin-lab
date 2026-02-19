@@ -9,6 +9,7 @@ Install Required Packages
 Install AWUS1900 Driver (RTL8814AU)
 
 -> sudo apt install realtek-rtl88xxau-dkms -y
+
 -> sudo reboot
 
 Verify:
@@ -24,6 +25,7 @@ Expected:
 Enable SSH
 
 -> sudo systemctl enable ssh
+
 -> sudo systemctl start ssh
 
 Check IP:
@@ -40,6 +42,7 @@ Add:
 
 "
 [keyfile]
+
 unmanaged-devices=interface-name:wlan1
 "
 
@@ -61,17 +64,29 @@ Example WPA2 configuration:
 
 "
 interface=wlan1
+
 driver=nl80211
+
 ssid=Lab_Test_AP
+
 hw_mode=g
+
 channel=6
+
 wmm_enabled=0
+
 macaddr_acl=0
+
 auth_algs=1
+
 ignore_broadcast_ssid=0
+
 wpa=2
+
 wpa_passphrase=labpassword123
+
 wpa_key_mgmt=WPA-PSK
+
 rsn_pairwise=CCMP
 "
 
@@ -85,18 +100,26 @@ Replace content with:
 
 "
 interface=wlan1
+
 bind-interfaces
+
 dhcp-range=192.168.4.2,192.168.4.100,255.255.255.0,24h
+
 dhcp-option=3,192.168.4.1
+
 dhcp-option=6,8.8.8.8
+
 except-interface=wlan0
+
 except-interface=eth0
 "
 
 Assign IP to wlan1
 
 -> sudo ip addr flush dev wlan1
+
 -> sudo ip addr add 192.168.4.1/24 dev wlan1
+
 -> sudo ip link set wlan1 up
 
 Enable IP Forwarding
@@ -116,9 +139,13 @@ net.ipv4.ip_forward=1
 Configure NAT
 
 -> sudo iptables -t nat -F
+
 -> sudo iptables -F FORWARD
+
 -> sudo iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+
 -> sudo iptables -A FORWARD -i wlan1 -o wlan0 -j ACCEPT
+
 -> sudo iptables -A FORWARD -i wlan0 -o wlan1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 Start Services Manually
@@ -156,6 +183,7 @@ Start Bettercap
 Inside bettercap:
 
 -> net.show
+
 -> net.sniff on
 
 Alternative Tools
