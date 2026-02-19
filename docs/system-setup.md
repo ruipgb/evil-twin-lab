@@ -131,6 +131,20 @@ Terminal 2:
 
 -> sudo hostapd /etc/hostapd/hostapd.conf
 
+Close Services Manually
+
+Cntrl + C
+
+Start/Stop Services by script
+
+Start:
+
+-> ./start-eviltwin.sh
+
+Stop:
+
+-> ./stop-eviltwin.sh
+
 ---
 
 # traffic-monitoring
